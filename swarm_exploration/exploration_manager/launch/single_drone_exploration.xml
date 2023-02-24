@@ -1,0 +1,98 @@
+<launch>
+    <arg name="drone_id" default="1"/>
+    <arg name="drone_num" default="1"/> <!-- to determine salesman number, etc -->
+    <arg name="init_x" default="0"/>
+    <arg name="init_y" default="0"/>
+    <arg name="init_z" default="0"/> 
+    <arg name="map_size_x" default="22"/>
+    <arg name="map_size_y" default="22"/>
+    <arg name="map_size_z" default="3.5"/>
+    <arg name="odom_prefix" default="odom"/>
+    <arg name="simulation" default="false"/>
+    <arg name="odometry_topic" default="$(arg odom_prefix)_$(arg drone_id)"/>
+    <!-- <arg name="odometry_topic" default="/pcl_render_node/odom_$(arg drone_id)"/> -->
+    <arg name="sensor_pose_topic" default="/pcl_render_node/sensor_pose_$(arg drone_id)"/> 
+    <arg name="depth_topic" default="/pcl_render_node/depth_$(arg drone_id)"/> 
+    <arg name="cx" default="324.0879821777344"/>
+    <arg name="cy" default="239.10362243652344"/>
+    <arg name="fx" default="385.69793701171875"/>
+    <arg name="fy" default="385.69793701171875"/>
+
+
+  <!-- main algorithm params -->
+  <include file="$(find exploration_manager)/launch/single_drone_planner.xml">
+
+    <arg name="drone_id" value="$(arg drone_id)"/>
+    <arg name="drone_num" value="$(arg drone_num)"/>
+    <arg name="map_size_x" value="$(arg map_size_x)"/>
+    <arg name="map_size_y" value="$(arg map_size_y)"/>
+    <arg name="map_size_z" value="$(arg map_size_z)"/>
+
+    <arg name="odometry_topic" default="$(arg odometry_topic)"/>
+    <arg name="sensor_pose_topic" value="$(arg sensor_pose_topic)"/> 
+
+    <!-- sensor pose: transform of camera frame in the world frame -->
+    <!-- depth topic: depth image, 640x480 by default -->
+    <!-- cloud topic: point cloud measurement  -->
+    <!-- subscribe ONLY TO ONE of the two topics -->
+    <arg name="depth_topic" value="$(arg depth_topic)"/> 
+
+    <arg name="cloud_topic" value="/pcl_render_node/cloud_$(arg drone_id)"/>
+
+    <!-- intrinsic params of the depth camera -->
+    <arg name="cx" value="$(arg cx)"/>
+    <arg name="cy" value="$(arg cy)"/>
+    <arg name="fx" value="$(arg fx)"/>
+    <arg name="fy" value="$(arg fy)"/>
+
+    <!-- maximum velocity and acceleration the drone will reach -->
+    <arg name="max_vel" value="1.5" />
+    <arg name="max_acc" value="1.0" />
+    <!-- <arg name="max_vel" value="1.0" />
+    <arg name="max_acc" value="0.8" /> -->
+    <arg name="simulation" value="$(arg simulation)" />
+  </include>
+
+  <!-- trajectory server -->
+  <node pkg="plan_manage" name="traj_server_$(arg drone_id)" type="traj_server" output="screen">
+    <remap from="/odom_world" to="$(arg odom_prefix)_$(arg drone_id)"/>
+
+    <remap from="/planning/bspline" to="/planning/bspline_$(arg drone_id)" />
+    <remap from="/planning/replan" to="/planning/replan_$(arg drone_id)" />
+    <remap from="/planning/new" to="/planning/new_$(arg drone_id)" />
+    
+    <remap from="/position_cmd" to="planning/pos_cmd_$(arg drone_id)"/>
+    <remap from="planning/position_cmd_vis" to="planning/position_cmd_vis_$(arg drone_id)" />
+    <remap from="planning/travel_traj" to="planning/travel_traj_$(arg drone_id)" />
+
+    <param name="traj_server/time_forward" value="1.5" type="double"/>
+    <param name="traj_server/pub_traj_id" value="4" type="int"/>
+    <param name="traj_server/drone_id" value="$(arg drone_id)" type="int"/>
+    <param name="traj_server/drone_num" value="$(arg drone_num)" type="int"/>
+    
+    <param name="perception_utils/top_angle" value="0.56125" type="double"/>
+    <param name="perception_utils/left_angle" value="0.69222" type="double"/>
+    <param name="perception_utils/right_angle" value="0.68901" type="double"/>
+    <param name="perception_utils/max_dist" value="4.5" type="double"/>
+    <param name="perception_utils/vis_dist" value="1.0" type="double"/>
+  </node>
+
+  <!-- use simulator -->
+  <include file="$(find exploration_manager)/launch/simulator_light.xml" if="$(arg simulation)">
+    <arg name="drone_id" value="$(arg drone_id)"/>
+    <arg name="drone_num" value="$(arg drone_num)"/>
+    <arg name="init_x"   value="$(arg init_x)"/>
+    <arg name="init_y"   value="$(arg init_y)"/>
+    <arg name="init_z"   value="$(arg init_z)"/> 
+    <arg name="map_size_x" value="$(arg map_size_x)"/>
+    <arg name="map_size_y" value="$(arg map_size_y)"/>
+    <arg name="map_size_z" value="$(arg map_size_z)"/>
+    <arg name="odometry_topic" value="$(arg odom_prefix)_$(arg drone_id)" />
+  </include>
+
+  <!-- lcm communication -->
+  <!-- <include file="$(find inf_uwb_ros)/launch/uwb_node_sim.launch" if="$(arg simulation)">
+    <arg name="self_id" value="$(arg drone_id)"/>
+  </include> -->
+
+</launch>

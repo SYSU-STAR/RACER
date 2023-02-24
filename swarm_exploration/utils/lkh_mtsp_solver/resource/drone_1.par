@@ -1,0 +1,4 @@
+PROBLEM_FILE = /home/boboyu/workspaces/catkin_ws/src/swarm_exploration/utils/lkh_mtsp_solver/resource/drone_1.tsp
+GAIN23 = NO
+OUTPUT_TOUR_FILE =/home/boboyu/workspaces/catkin_ws/src/swarm_exploration/utils/lkh_mtsp_solver/resource/drone_1.tour
+RUNS = 1

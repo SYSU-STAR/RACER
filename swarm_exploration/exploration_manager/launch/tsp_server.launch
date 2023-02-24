@@ -1,0 +1,29 @@
+<launch>
+  <!-- TSP and MTSP -->
+  <node pkg="lkh_tsp_solver" name="tsp_solver_1" type="tsp_node" output="screen">
+    <param name="exploration/drone_id" value="1" type="int"/>
+    <param name="exploration/tsp_dir"  value="$(find lkh_tsp_solver)/resource" type="string"/>
+  </node>
+  <node pkg="lkh_mtsp_solver" name="mtsp_solver_1" type="mtsp_node" output="screen">
+    <param name="exploration/drone_id" value="1" type="int"/>
+    <param name="exploration/mtsp_dir" value="$(find lkh_mtsp_solver)/resource" type="string"/>
+  </node>
+
+  <node pkg="lkh_tsp_solver" name="tsp_solver_2" type="tsp_node" output="screen">
+    <param name="exploration/drone_id" value="2" type="int"/>
+    <param name="exploration/tsp_dir"  value="$(find lkh_tsp_solver)/resource" type="string"/>
+  </node>
+  <node pkg="lkh_mtsp_solver" name="mtsp_solver_2" type="mtsp_node" output="screen">
+    <param name="exploration/drone_id" value="2" type="int"/>
+    <param name="exploration/mtsp_dir" value="$(find lkh_mtsp_solver)/resource" type="string"/>
+  </node>
+
+  <node pkg="lkh_tsp_solver" name="tsp_solver_3" type="tsp_node" output="screen">
+    <param name="exploration/drone_id" value="3" type="int"/>
+    <param name="exploration/tsp_dir"  value="$(find lkh_tsp_solver)/resource" type="string"/>
+  </node>
+  <node pkg="lkh_mtsp_solver" name="mtsp_solver_3" type="mtsp_node" output="screen">
+    <param name="exploration/drone_id" value="3" type="int"/>
+    <param name="exploration/mtsp_dir" value="$(find lkh_mtsp_solver)/resource" type="string"/>
+  </node>
+</launch>

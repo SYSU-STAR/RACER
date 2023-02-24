@@ -1,0 +1,7 @@
+<launch>
+
+<node pkg="rosbag" type="play" name="player" output="screen" args="/home/boboyu/data/bag/swarm_exploration/two_drones/1_2drone.bag"/>
+
+<node pkg="exploration_manager" name="proc_bag_swarm" type="proc_bag_swarm" output="screen"/>
+
+</launch>  

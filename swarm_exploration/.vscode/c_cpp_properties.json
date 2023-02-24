@@ -1,0 +1,23 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/opt/ros/melodic/include",
+                "/usr/include/eigen3",
+                "/usr/include/pcl-1.8",
+                "/home/boboyu/workspaces/catkin_ws/devel/include",
+                "${workspaceFolder}/plan_env/include",
+                "${workspaceFolder}/active_perception/include",
+                "${workspaceFolder}/poly_traj/include"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "clang-x64"
+        }
+    ],
+    "version": 4
+}

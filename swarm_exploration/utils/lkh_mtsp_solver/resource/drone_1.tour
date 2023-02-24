@@ -1,0 +1,16 @@
+NAME : single.811.tour
+COMMENT : Length = 811
+COMMENT : Found by LKH [Keld Helsgaun] Sat Feb 20 18:32:14 2021
+TYPE : TOUR
+DIMENSION : 8
+TOUR_SECTION
+1
+8
+7
+5
+6
+2
+3
+4
+-1
+EOF

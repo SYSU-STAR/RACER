@@ -1,0 +1,7 @@
+SPECIAL
+PROBLEM_FILE = /home/boboyu/workspaces/catkin_ws/src/swarm_exploration/utils/lkh_mtsp_solver/resource/amtsp.atsp
+MTSP_OBJECTIVE = MINSUM
+MTSP_MIN_SIZE = 4
+RUNS = 1
+TRACE_LEVEL = 0
+TOUR_FILE = /home/boboyu/workspaces/catkin_ws/src/swarm_exploration/utils/lkh_mtsp_solver/resource/amtsp.tour

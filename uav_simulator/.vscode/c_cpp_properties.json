@@ -1,0 +1,19 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/opt/ros/melodic/include",
+                "/usr/include/eigen3",
+                "/usr/include/pcl-1.8",
+                "/home/boboyu/workspaces/catkin_ws/devel/include"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/clang",
+            "cStandard": "c11",
+            "cppStandard": "c++14"
+        }
+    ],
+    "version": 4
+}

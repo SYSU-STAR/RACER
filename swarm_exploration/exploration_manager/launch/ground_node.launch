@@ -1,0 +1,108 @@
+<launch>
+  <arg name="drone_id" value="6"/>
+  <arg name="drone_num" value="6"/> 
+  <arg name="vis_drone_id" value="1"/> 
+  
+  <arg name="map_size_x" value="35.0"/>
+  <arg name="map_size_y" value="25.0"/>
+  <arg name="map_size_z" value=" 3.5"/>
+  <!-- <arg name="simulation" default="false"/> -->
+  <arg name="simulation" default="true"/>
+
+  <!-- main algorithm params -->
+  <!-- main node -->
+  <node pkg="exploration_manager" name="ground_node_$(arg drone_id)" type="ground_node" output="screen">
+
+    <remap from="/sdf_map/occupancy_all" to="/sdf_map/occupancy_all_$(arg drone_id)" />
+    <remap from="/sdf_map/occupancy_local" to="/sdf_map/occupancy_local_$(arg drone_id)" />
+    <remap from="/sdf_map/occupancy_local_inflate" to="/sdf_map/occupancy_local_inflate_$(arg drone_id)" />
+    <remap from="/sdf_map/update_range" to="/sdf_map/update_range_$(arg drone_id)" />
+
+    <remap from="/multi_map_manager/chunk_stamps_send" to="/multi_map_manager/chunk_stamps" />
+    <remap from="/multi_map_manager/chunk_data_send" to="/multi_map_manager/chunk_data" />
+    <remap from="/multi_map_manager/chunk_stamps_recv" to="/multi_map_manager/chunk_stamps" />
+    <remap from="/multi_map_manager/chunk_data_recv" to="/multi_map_manager/chunk_data" />
+
+
+    <param name="sdf_map/resolution"      value="0.1" /> 
+    <param name="sdf_map/map_size_x"   value="$(arg map_size_x)" /> 
+    <param name="sdf_map/map_size_y"   value="$(arg map_size_y)" /> 
+    <param name="sdf_map/map_size_z"   value="$(arg map_size_z)" /> 
+    <param name="sdf_map/obstacles_inflation"     value="0.199" /> 
+    <!-- <param name="sdf_map/obstacles_inflation"     value="0.0" />  -->
+    <param name="sdf_map/local_bound_inflate"    value="0.5"/>
+    <param name="sdf_map/local_map_margin" value="50"/>
+    <param name="sdf_map/ground_height"        value="-1.0"/>
+    <param name="sdf_map/default_dist"        value="0.0"/>
+    
+    <param name="sdf_map/p_hit"  value="0.65"/>
+    <param name="sdf_map/p_miss" value="0.35"/>
+    <param name="sdf_map/p_min"  value="0.12"/>
+    <param name="sdf_map/p_max"  value="0.90"/>
+    <param name="sdf_map/p_occ"  value="0.80"/>
+    <param name="sdf_map/min_ray_length" value="0.5"/>
+    <param name="sdf_map/max_ray_length" value="4.5"/>
+    <param name="sdf_map/virtual_ceil_height"   value="-10"/>
+    <param name="sdf_map/optimistic" value="false" type="bool"/>
+    <param name="sdf_map/signed_dist" value="false" type="bool"/>
+    <param name="sdf_map/box_min_x" value="-10" type="double"/>
+    <param name="sdf_map/box_min_y" value="-10" type="double"/>
+    <param name="sdf_map/box_min_z" value="0" type="double"/>
+    <param name="sdf_map/box_max_x" value="10" type="double"/>
+    <param name="sdf_map/box_max_y" value="10" type="double"/>
+    <param name="sdf_map/box_max_z" value="2.0" type="double"/>
+
+    <!-- <param name="map_ros/cx" value="$(arg cx)"/>
+    <param name="map_ros/cy" value="$(arg cy)"/>
+    <param name="map_ros/fx" value="$(arg fx)"/>
+    <param name="map_ros/fy" value="$(arg fy)"/> -->
+    <param name="map_ros/depth_filter_maxdist"   value="5.0"/>
+    <param name="map_ros/depth_filter_mindist"   value="0.2"/>
+    <param name="map_ros/depth_filter_margin"    value="2"/>
+    <param name="map_ros/k_depth_scaling_factor" value="1000.0"/>
+    <param name="map_ros/skip_pixel" value="2"/>
+    <param name="map_ros/esdf_slice_height" value="0.3"/>
+    <param name="map_ros/visualization_truncate_height"   value="10.09"/>
+    <param name="map_ros/visualization_truncate_low"   value="-2.0"/>
+    <param name="map_ros/show_occ_time"  value="false"/>
+    <param name="map_ros/show_esdf_time" value="false"/>
+    <param name="map_ros/show_all_map" value="true"/>
+    <param name="map_ros/frame_id"      value="world"/>
+
+    <param name="exploration/drone_num" value="$(arg drone_num)" type="double"/>
+    <param name="exploration/drone_id" value="$(arg drone_id)" type="int"/>
+    <param name="exploration/vis_drone_id" value="$(arg vis_drone_id)" type="int"/>
+
+    <param name="manager/use_geometric_path" value="true" type="bool"/>
+    <param name="astar/lambda_heu" value="10000.0" type="double"/>
+    <param name="astar/resolution_astar" value="0.2" type="double"/>
+    <param name="astar/allocate_num" value="1000000" type="int"/>
+    <param name="astar/max_search_time" value="0.005" type="double"/>
+
+    <param name="frontier/cluster_min" value="100" type="int"/>
+    <param name="frontier/cluster_size_xy" value="2.0" type="double"/>
+    <param name="frontier/cluster_size_z" value="10.0" type="double"/>
+    <param name="frontier/min_candidate_dist" value="0.5" type="double"/>
+    <param name="frontier/min_candidate_clearance" value="0.21" type="double"/>
+    <param name="frontier/candidate_dphi" value="$(eval 15 * 3.1415926 / 180.0)" type="double"/>
+    <param name="frontier/candidate_rnum" value="3" type="int"/>
+    <param name="frontier/candidate_rmin" value="1.0" type="double"/>
+    <param name="frontier/candidate_rmax" value="1.5" type="double"/>
+    <param name="frontier/down_sample" value="3" type="int"/>;
+    <param name="frontier/min_visib_num" value="30" type="int"/>;
+    <param name="frontier/min_view_finish_fraction" value="0.2" type="double"/>;
+
+    <!-- Perception utils -->
+    <param name="perception_utils/top_angle" value="0.56125" type="double"/>;
+    <param name="perception_utils/left_angle" value="0.69222" type="double"/>;
+    <param name="perception_utils/right_angle" value="0.68901" type="double"/>;
+    <param name="perception_utils/max_dist" value="4.5" type="double"/>;
+    <param name="perception_utils/vis_dist" value="1.0" type="double"/>;
+
+    <param name="astar/lambda_heu" value="10000.0" type="double"/>
+    <param name="astar/resolution_astar" value="0.2" type="double"/>
+    <param name="astar/allocate_num" value="1000000" type="int"/>
+    <param name="astar/max_search_time" value="0.005" type="double"/>
+  </node>
+
+</launch>

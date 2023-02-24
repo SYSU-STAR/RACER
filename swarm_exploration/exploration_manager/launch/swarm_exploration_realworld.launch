@@ -1,0 +1,34 @@
+<launch>
+  <!-- size of map, change the size in x, y, z according to your application -->
+  <arg name="map_size_x" value="35.0"/>
+  <arg name="map_size_y" value="25.0"/>
+  <arg name="map_size_z" value=" 3.5"/>
+
+  <!-- Global odom prefix -->
+  <arg name="odom_prefix" value="/state_ukf/odom" />
+  <arg name="drone_num" value="4" />
+  <arg name="drone_id" default="1" />
+
+  <include file="$(find exploration_manager)/launch/single_drone_exploration_realworld.xml">
+    <arg name="drone_id" value="$(arg drone_id)"/>
+    <arg name="init_x"   value="0"/>
+    <!-- <arg name="init_x"   value="-4.5"/> -->
+    <arg name="init_y"   value="0"/>
+    <!-- <arg name="init_y"   value="-3"/> -->
+    <arg name="init_z"   value="0"/> 
+    <arg name="map_size_x" value="$(arg map_size_x)"/>
+    <arg name="map_size_y" value="$(arg map_size_y)"/>
+    <arg name="map_size_z" value="$(arg map_size_z)"/>
+    <arg name="odom_prefix" value="$(arg odom_prefix)"/>
+    <arg name="drone_num" value="$(arg drone_num)"/>
+    <arg name="simulation" value="false" />
+    <arg name="odometry_topic" value="/vins_estimator/odometry" />
+    <arg name="sensor_pose_topic" value="/vins_estimator/camera_pose" />
+    <arg name="depth_topic" value="/camera/depth/image_rect_raw" />
+    <arg name="cx" value="326.34564209"/>
+    <arg name="cy" value="239.099884033"/>
+    <arg name="fx" value="384.840637207"/>
+    <arg name="fy" value="384.840637207"/>
+  </include>
+
+</launch>

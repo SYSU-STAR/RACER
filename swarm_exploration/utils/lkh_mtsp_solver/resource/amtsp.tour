@@ -1,0 +1,60 @@
+NAME : amtsp.-53700.tour
+COMMENT : Length = -53700
+COMMENT : Found by LKH [Keld Helsgaun] Fri Feb 19 23:03:54 2021
+TYPE : TOUR
+DIMENSION : 52
+TOUR_SECTION
+1
+2
+8
+12
+14
+44
+52
+3
+47
+31
+10
+11
+39
+17
+33
+9
+43
+29
+30
+26
+40
+50
+5
+34
+41
+13
+20
+46
+49
+6
+38
+23
+25
+15
+27
+28
+21
+18
+36
+16
+37
+24
+48
+4
+35
+42
+45
+51
+7
+22
+19
+32
+-1
+EOF

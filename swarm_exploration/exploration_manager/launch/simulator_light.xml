@@ -1,0 +1,58 @@
+<!-- The simulator receive poscmd from the planner, generate odometry of the drone and visualize it -->
+<launch>
+  <!-- Id of the drone -->
+  <arg name="drone_id"/>
+  <arg name="drone_num"/>
+  <!-- Initial position of the drone -->
+  <arg name="init_x"/>
+  <arg name="init_y"/>
+  <arg name="init_z"/> 
+  <!-- Size of the flight environment -->
+  <arg name="map_size_x"/>
+  <arg name="map_size_y"/>
+  <arg name="map_size_z"/>
+  <arg name="odometry_topic" />
+
+  <!-- Physical simulator (so3 simulator, disturbance generator and controller) is replaced by light weight cmd2odom -->
+  <node pkg="poscmd_2_odom" name="poscmd_2_odom_$(arg drone_id)" type="poscmd_2_odom" output="screen">
+      <param name="drone_id"     value="$(arg drone_id)"/>
+      <param name="init_x" value="$(arg init_x)"/>
+      <param name="init_y" value="$(arg init_y)"/>
+      <param name="init_z" value="$(arg init_z)"/>
+      <remap from="~command" to="/planning/pos_cmd_$(arg drone_id)"/>
+      <remap from="~odometry" to="$(arg odometry_topic)"/>
+  </node>
+                                                                                                                                                                                                                                                                                                    
+  <node pkg="odom_visualization" name="odom_visualization_$(arg drone_id)" type="odom_visualization" output="screen">
+      <remap from="~odom" to="$(arg odometry_topic)"/>
+      <param name="drone_id" value="$(arg drone_id)"/>    
+      <param name="drone_num" value="$(arg drone_num)"/>    
+      <param name="color/a" value="1.0"/>    
+      <param name="color/r" value="0.0"/>        
+      <param name="color/g" value="0.0"/>        
+      <param name="color/b" value="1.0"/>       
+      <param name="covariance_scale" value="100.0"/>       
+      <param name="robot_scale" value="1.0"/>
+  </node>
+
+  <node pkg="local_sensing_node" type="pcl_render_node" name="pcl_render_node_$(arg drone_id)" output="screen">
+      <rosparam command="load" file="$(find local_sensing_node)/params/camera.yaml" />
+
+      <param name="sensing_horizon"  value="5.0" />
+      <param name="sensing_rate"     value="10.0"/>
+      <param name="estimation_rate"  value="10.0"/>
+      <param name="map/x_size"     value="$(arg map_size_x)"/>
+      <param name="map/y_size"     value="$(arg map_size_y)"/>
+      <param name="map/z_size"     value="$(arg map_size_z)"/>
+      <param name="map/init_x"     value="$(arg init_x)"/>
+      <param name="map/init_y"     value="$(arg init_y)"/>
+      <param name="map/drone_id"     value="$(arg drone_id)"/>
+
+      <remap from="~global_map" to="/map_generator/global_cloud"/>
+      <remap from="~odometry"   to="$(arg odometry_topic)"/>
+      <remap from="/pcl_render_node/depth" to="/pcl_render_node/depth_$(arg drone_id)"/>
+      <remap from="/pcl_render_node/sensor_pose" to="/pcl_render_node/sensor_pose_$(arg drone_id)"/>
+      <remap from="/pcl_render_node/odom" to="/pcl_render_node/odom_$(arg drone_id)"/>
+  </node>
+
+</launch>

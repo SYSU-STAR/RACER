@@ -74,7 +74,7 @@ Then simply clone and compile our package (using ssh here):
 
 ```
   cd ${YOUR_WORKSPACE_PATH}/src
-  git clone git@github.com:SYSU-RoboticsLab/RACER.git
+  git clone https://github.com/SYSU-STAR/RACER.git
   cd ../ 
   catkin_make
 ```
