@@ -813,7 +813,7 @@ void FastExplorationFSM::optTimerCallback(const ros::TimerEvent& e) {
             << std::endl;
   if (cur_app1 + cur_app2 > prev_app1 + prev_app2 + 0.1) {
     ROS_ERROR("Larger cost after reallocation");
-    if (!WAIT_TRIGGER) {
+    if (state_!=WAIT_TRIGGER) {
       return;
     }
   }
