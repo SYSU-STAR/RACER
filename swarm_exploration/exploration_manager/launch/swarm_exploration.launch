@@ -8,10 +8,12 @@
   <arg name="odom_prefix" value="/state_ukf/odom" />
   <arg name="drone_num" value="5" />
 
-    <!-- Map generation -->
-  <!-- <node pkg ="map_generator" name ="map_pub" type ="map_pub" output = "screen" args="$(find map_generator)/resource/office.pcd">    
-  </node> -->
-  <node pkg ="map_generator" name ="map_pub" type ="map_pub" output = "screen" args="$(find map_generator)/resource/pillar.pcd">    
+  <!-- Map generation -->
+  <node pkg ="map_generator" name ="map_pub" type ="map_pub" output = "screen" args="$(find map_generator)/resource/office.pcd">
+    <param name="map_floor/x_min" value="-7.5" type="double"/>
+    <param name="map_floor/x_max" value="7.5" type="double"/>
+    <param name="map_floor/y_min" value="-15.0" type="double"/>
+    <param name="map_floor/y_max" value="15.0" type="double"/>
   </node>
 
 <include file="$(find exploration_manager)/launch/single_drone_exploration.xml">
