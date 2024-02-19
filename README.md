@@ -118,7 +118,7 @@ Other examples can be found in [map_generator/resource](uav_simulator/map_genera
     <arg name="box_max_y" value="15.0"/>
     <arg name="box_max_z" value=" 2.0"/>
 ```
-and the map_floor parameters in the map_publisher node [swarm_exxploration.launch](swarm_exploration/exploration_manager/launch/swarm_exporation.launch) to match the size of the map:
+and the map_floor parameters in the map_publisher node in [swarm_exploration.launch](swarm_exploration/exploration_manager/launch/swarm_exploration.launch) or the exploration launch file that is going to be used to match the size of the map:
 ```xml
     <param name="map_floor/x_min" value="-7.5" type="double"/>
     <param name="map_floor/x_max" value="7.5" type="double"/>
