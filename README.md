@@ -15,7 +15,7 @@ Try [Quick Start](#quick-start) to run a demo in a few minutes!
 
 __Complete video__: [video](https://www.bilibili.com/video/BV1ec411J7ps/?spm_id_from=333.999.0.0&vd_source=ce9122be0193fcad2e9384dacc62f4fa).
 
-__Authors__: [Boyu Zhou](http://sysu-star.com) from SYSU STAR Group, and Hao Xu, [Shaojie Shen](http://uav.ust.hk/group/) from the [HUKST Aerial Robotics Group](http://uav.ust.hk/).
+__Authors__: [Boyu Zhou](http://sysu-star.com) from SYSU STAR Group, and Hao Xu, [Shaojie Shen](http://uav.ust.hk/group/) from the [HKUST Aerial Robotics Group](http://uav.ust.hk/).
 
 Please cite our paper if you use this project in your research:
 - [__RACER: Rapid Collaborative Exploration with a
