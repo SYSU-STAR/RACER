@@ -47,11 +47,22 @@ Please kindly star :star: this project if it helps you. We take great efforts to
 
 This project has been tested on Ubuntu 18.04(ROS Melodic) and 20.04(ROS Noetic).
 
-Run the following commands to install required tools:
+Firstly, you should install __nlopt v2.7.1__:
+```
+git clone -b v2.7.1 https://github.com/stevengj/nlopt.git
+cd nlopt
+mkdir build
+cd build
+cmake ..
+make
+sudo make install
+```
 
+Next, you can run the following commands to install other required tools:
 ```
-sudo apt-get install libarmadillo-dev libnlopt-dev libelf-dev libdw-dev 
+sudo apt-get install libarmadillo-dev
 ```
+
 After that, you need to install __LKH-3__(LKH-3.0.6 version is recommended) with the following commands. Please make sure the executable file `LKH` is correctly placed at `/usr/local/bin`.
 
 ```

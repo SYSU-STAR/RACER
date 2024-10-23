@@ -8,15 +8,9 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Wall")
 
 find_package(Eigen3 REQUIRED)
 find_package(PCL 1.7 REQUIRED)
-# Check if the system can find nlopt
-find_package(NLopt)
-if(NOT NLopt_FOUND)
-    set(NLOPT_INCLUDE_DIR "/usr/include")  # Default system path
-    set(NLOPT_LIBRARY "/usr/lib/x86_64-linux-gnu/libnlopt.so")  # Manually specify library path
-else()
-    set(NLOPT_INCLUDE_DIRS ${NLOPT_INCLUDE_DIR})
-    set(NLOPT_LIBRARIES ${NLOPT_LIBRARIES})
-endif()
+
+set(NLOPT_INCLUDE_DIR "/usr/local/include")  
+set(NLOPT_LIBRARY "/usr/local/lib/libnlopt.so")  
 
 find_package(catkin REQUIRED COMPONENTS
   roscpp
@@ -34,13 +28,14 @@ catkin_package(
  CATKIN_DEPENDS plan_env active_perception
 )
 
+
 include_directories( 
     SYSTEM 
     include 
     ${catkin_INCLUDE_DIRS}
     ${Eigen3_INCLUDE_DIRS} 
     ${PCL_INCLUDE_DIRS}
-    ${NLOPT_INCLUDE_DIRS}  # If NLopt is found, use the result of find_package
+    ${NLOPT_INCLUDE_DIR}  
 )
 
 add_library( bspline_opt 
@@ -48,6 +43,6 @@ add_library( bspline_opt
     )
 target_link_libraries( bspline_opt
     ${catkin_LIBRARIES} 
-    ${NLOPT_LIBRARIES}  # Link nlopt library
-    ${NLOPT_LIBRARY}    # If nlopt is not found, manually link it as well
+    ${NLOPT_LIBRARY}   
     )
+
