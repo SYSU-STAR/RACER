@@ -1,8 +1,6 @@
 SPECIAL
-PROBLEM_FILE = /home/boboyu/workspaces/catkin_ws/src/swarm_exploration/utils/lkh_mtsp_solver/resource/amtsp3_2.atsp
-SALESMEN = 2
-MTSP_OBJECTIVE = MINSUM
-MTSP_MIN_SIZE = 0
+PROBLEM_FILE = /home/zmj50029563/workspace/racer_ws/src/RACER/swarm_exploration/utils/lkh_mtsp_solver/resource/amtsp3_2.atsp
+TRACE_LEVEL = 1
+SEED = 0
 RUNS = 1
-TRACE_LEVEL = 0
-TOUR_FILE = /home/boboyu/workspaces/catkin_ws/src/swarm_exploration/utils/lkh_mtsp_solver/resource/amtsp3_2.tour
+TOUR_FILE = /home/zmj50029563/workspace/racer_ws/src/RACER/swarm_exploration/utils/lkh_mtsp_solver/resource/amtsp3_2.tour

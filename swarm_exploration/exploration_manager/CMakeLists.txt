@@ -3,6 +3,7 @@ project(exploration_manager)
 
 set(CMAKE_BUILD_TYPE "Release")
 set(CMAKE_CXX_FLAGS "-std=c++11")
+set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Wall")
 
 find_package(Eigen3 REQUIRED)
@@ -66,7 +67,6 @@ add_executable(exploration_node
   )
 target_link_libraries(exploration_node 
   ${catkin_LIBRARIES}
-  -ldw
   )
 
 add_executable(ground_node
@@ -75,5 +75,4 @@ add_executable(ground_node
   )
 target_link_libraries(ground_node
   ${catkin_LIBRARIES}
-  -ldw
   )

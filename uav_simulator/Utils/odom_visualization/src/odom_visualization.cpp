@@ -477,7 +477,7 @@ int main(int argc, char** argv) {
   n.param("color/a", color_a, 1.0);
   n.param("origin", origin, false);
   n.param("robot_scale", scale, 2.0);
-  n.param("frame_id", _frame_id, string("/world"));
+  n.param("frame_id", _frame_id, string("world"));
 
   n.param("cross_config", cross_config, false);
   n.param("tf45", tf45, false);

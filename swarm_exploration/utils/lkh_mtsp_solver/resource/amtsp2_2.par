@@ -1,7 +1,7 @@
 SPECIAL
-PROBLEM_FILE = /home/boboyu/workspaces/catkin_ws/src/swarm_exploration/utils/lkh_mtsp_solver/resource/amtsp2_2.atsp
+PROBLEM_FILE = /home/zmj50029563/workspace/racer_ws/src/RACER/swarm_exploration/utils/lkh_mtsp_solver/resource/amtsp2_2.atsp
 SALESMEN = 1
 MTSP_OBJECTIVE = MINSUM
 RUNS = 1
 TRACE_LEVEL = 0
-TOUR_FILE = /home/boboyu/workspaces/catkin_ws/src/swarm_exploration/utils/lkh_mtsp_solver/resource/amtsp2_2.tour
+TOUR_FILE = /home/zmj50029563/workspace/racer_ws/src/RACER/swarm_exploration/utils/lkh_mtsp_solver/resource/amtsp2_2.tour
