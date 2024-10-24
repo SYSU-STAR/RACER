@@ -1,0 +1,3 @@
+swarm_exploration/utils/lkh_mtsp_solver/resource/*.atsp
+swarm_exploration/utils/lkh_mtsp_solver/resource/*.par
+swarm_exploration/utils/lkh_mtsp_solver/resource/*.tour
