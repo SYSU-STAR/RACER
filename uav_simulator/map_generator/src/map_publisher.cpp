@@ -7,6 +7,7 @@
 
 using namespace std;
 string file_name;
+double x_min, y_min, x_max, y_max;
 
 int main(int argc, char** argv)
 {
@@ -19,6 +20,11 @@ int main(int argc, char** argv)
   // file_name = "/home/boboyu/workspaces/catkin_ws/src/uav_simulator/map_generator/resource/tmp.pcd";
   // ros::Publisher cloud_pub = node.advertise<sensor_msgs::PointCloud2>("/pcl_render_node/local_map", 10, true);
 
+  node.param("map_pub/map_floor/x_min", x_min, -10.0);
+  node.param("map_pub/map_floor/x_max", x_max, 10.0);
+  node.param("map_pub/map_floor/y_min", y_min, -10.0);
+  node.param("map_pub/map_floor/y_max", y_max, 10.0);
+
   ros::Duration(1.0).sleep();
 
   /* load cloud from pcd */
@@ -30,25 +36,20 @@ int main(int argc, char** argv)
     return -1;
   }
 
-  // // Process map
-  // for (int i = 0; i < cloud.points.size(); ++i)
-  // {
-  //   auto pt = cloud.points[i];
-  //   pcl::PointXYZ pr;
-  //   pr.x = pt.x;
-  //   pr.y = -pt.z;
-  //   pr.z = pt.y;
-  //   cloud.points[i] = pr;
-  // }
-
-  for (double x = -7; x <= 7; x += 0.1)
-    for (double y = -15; y <= 15; y += 0.1)
+  /*
+  for (double x = -12; x <= 12; x += 0.1)
+    for (double y = -40; y <= 40; y += 0.1)
     {
       cloud.push_back(pcl::PointXYZ(x, y, 0));
     }
+  */
 
-  // cout << "Publishing map..." << endl;
-
+  for (double x = x_min; x <= x_max; x += 0.1)
+    for (double y = y_min; y <= y_max; y += 0.1)
+    {
+      cloud.push_back(pcl::PointXYZ(x, y, 0));
+    }
+  
   sensor_msgs::PointCloud2 msg;
   pcl::toROSMsg(cloud, msg);
   msg.header.frame_id = "world";
