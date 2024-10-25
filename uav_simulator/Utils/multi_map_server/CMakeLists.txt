@@ -67,3 +67,6 @@ target_link_libraries(multi_map_visualization
    ${catkin_LIBRARIES}
    ${ARMADILLO_LIBRARIES}
 )
+
+add_dependencies(multi_map_visualization ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
