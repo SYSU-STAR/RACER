@@ -39,8 +39,6 @@ Please kindly star :star: this project if it helps you. We take great efforts to
   - [Table of Contents](#table-of-contents)
   - [Quick Start](#quick-start)
   - [Exploring Different Environments](#exploring-different-environments)
-  - [Known issues](#known-issues)
-    - [Compilation issue](#compilation-issue)
   - [Acknowledgements](#acknowledgements)
 
 ## Quick Start
@@ -158,15 +156,6 @@ An example is illustrated:-->
 
 Normally, a file named __tmp.pcd__ will be saved at ```~/```. You may replace ```~/``` with any locations you want.
 Lastly, you can use this file for exploration, as mentioned [here](#exploring-different-environments). -->
-
-## Known issues
-
-### Compilation issue
-
-If you get the following error message,  please try to recompile this project with **catkin_make** .
-```
-fatal error: plan_env/ChunkStamps.h: No such file or directory
-```
 
 ## Acknowledgements
   We use **NLopt** for non-linear optimization and use **LKH** for travelling salesman problem.
