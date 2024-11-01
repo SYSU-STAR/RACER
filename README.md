@@ -3,7 +3,7 @@
 **RACER**, a **RA**pid **C**ollaborative **E**xplo**R**ation approach using a
 fleet of decentralized UAVs. 
 
-We develop a fully decentralized approach for exploration tasks using a fleet of quadrotors. The proposed system features robustness against unstable communication and a high degree of coordination. The quadrotor team operates with asynchronous and limited communication and does not require any central control. The coverage paths and workload allocations of the team are optimized and balanced in order to fully realize the system's potential. The associated paper has been published in IEEE Transactions on Robotics.
+We develop a fully decentralized approach for exploration tasks using a fleet of quadrotors. The proposed system features robustness against unstable communication and a high degree of coordination. The quadrotor team operates with asynchronous and limited communication and does not require any central control. The coverage paths and workload allocations of the team are optimized and balanced in order to fully realize the system's potential. The associated paper has been published in IEEE Transactions on Robotics and is selected as the **2023 IEEE TRO Best Paper**!
 
 
 Try [Quick Start](#quick-start) to run a demo in a few minutes!  
