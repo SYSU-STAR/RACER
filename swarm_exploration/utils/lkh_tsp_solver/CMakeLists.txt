@@ -45,8 +45,8 @@ add_library( lkh_tsp_solver
 )
 target_link_libraries(lkh_tsp_solver -lm)
 
-add_executable( tsp_node 
-  ${SRCS}
-  src2/tsp_node.cpp
-)
-target_link_libraries(tsp_node ${catkin_LIBRARIES} -lm lkh_tsp_solver)
+# add_executable( tsp_node 
+#   ${SRCS}
+#   src2/tsp_node.cpp
+# )
+# target_link_libraries(tsp_node ${catkin_LIBRARIES} -lm lkh_tsp_solver)
