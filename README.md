@@ -120,7 +120,6 @@ We provide several sample environments, which can be selected in [swarm_explorat
 ```
 
 Other examples can be found in [map_generator/resource](uav_simulator/map_generator/resource). If you want to use your own environments, simply place the .pcd files in [map_generator/resource](uav_simulator/map_generator/resource), and follow the comments above to specify it. You may also need to change the bounding box of explored space in [exploration.launch](swarm_exploration/exploration_manager/launch/single_drone_planner.xml):
-
 ```xml
   <arg name="box_min_x" value="-10.0"/>
   <arg name="box_min_y" value="-15.0"/>
@@ -128,6 +127,13 @@ Other examples can be found in [map_generator/resource](uav_simulator/map_genera
   <arg name="box_max_x" value="10.0"/>
   <arg name="box_max_y" value="15.0"/>
   <arg name="box_max_z" value=" 2.0"/>
+```
+and the map_floor parameters in the map_publisher node in [swarm_exploration.launch](swarm_exploration/exploration_manager/launch/swarm_exploration.launch) or the exploration launch file that is going to be used to match the size of the map:
+```xml
+    <param name="map_floor/x_min" value="-7.5" type="double"/>
+    <param name="map_floor/x_max" value="7.5" type="double"/>
+    <param name="map_floor/y_min" value="-15.0" type="double"/>
+    <param name="map_floor/y_max" value="15.0" type="double"/>
 ```
 
 To create your own .pcd environments, you can use [this tool](https://github.com/HKUST-Aerial-Robotics/FUEL#creating-a-pcd-environment). 
