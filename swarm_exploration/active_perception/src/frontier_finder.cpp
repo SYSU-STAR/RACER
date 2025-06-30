@@ -88,7 +88,7 @@ void FrontierFinder::searchFrontiers() {
     if (haveAnyOverlap(iter->box_min_, iter->box_max_, mins, maxs) && isFrontierChanged(*iter)) {
       resetFlag(iter, frontiers_);
       removed_ids_.push_back(rmv_idx++);
-      iter = frontiers.erase(iter);
+      iter = frontiers_.erase(iter);
     } else {
       ++rmv_idx;
       ++iter;
