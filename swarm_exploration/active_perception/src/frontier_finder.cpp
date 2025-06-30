@@ -98,6 +98,7 @@ void FrontierFinder::searchFrontiers() {
   for (auto iter = dormant_frontiers_.begin(); iter != dormant_frontiers_.end();) {
     if (haveAnyOverlap(iter->box_min_, iter->box_max_, mins, maxs) && isFrontierChanged(*iter))
       resetFlag(iter, dormant_frontiers_);
+      iter = dormant_frontiers_.erase(iter);
     else
       ++iter;
   }
