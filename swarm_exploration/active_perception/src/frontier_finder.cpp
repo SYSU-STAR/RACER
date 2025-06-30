@@ -77,7 +77,6 @@ void FrontierFinder::searchFrontiers() {
       edt_env_->sdf_map_->posToIndex(cell, idx);
       frontier_flag_[toadr(idx)] = 0;
     }
-    iter = frontiers.erase(iter);
   };
 
   // std::cout << "Before remove: " << frontiers_.size() << std::endl;
@@ -88,7 +87,8 @@ void FrontierFinder::searchFrontiers() {
     // haveOverlap(iter->box_min_, iter->box_max_, update_min, update_max)
     if (haveAnyOverlap(iter->box_min_, iter->box_max_, mins, maxs) && isFrontierChanged(*iter)) {
       resetFlag(iter, frontiers_);
-      removed_ids_.push_back(rmv_idx);
+      removed_ids_.push_back(rmv_idx++);
+      iter = frontiers.erase(iter);
     } else {
       ++rmv_idx;
       ++iter;
